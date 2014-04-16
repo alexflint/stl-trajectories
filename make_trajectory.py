@@ -24,14 +24,18 @@ def make_cube(x):
             make_quad(x[4], x[5], x[7], x[6]) +
             make_quad(x[0], x[2], x[6], x[4]))
 
+def normalized(x):
+    x = np.asarray(x)
+    return x / np.linalg.norm(x)
+
 def make_strut(start, end, radius):
     start = np.asarray(start)
     end = np.asarray(end)
     diff = end - start
 
     idx = np.argmin(diff)
-    u = np.cross(diff, axis(idx, 3))
-    v = np.cross(diff, u)
+    u = normalized(np.cross(diff, axis(idx, 3)))
+    v = normalized(np.cross(diff, u))
 
     corners = []
     for i in range(8):
