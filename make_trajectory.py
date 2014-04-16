@@ -66,8 +66,10 @@ def main():
     simple_trajectory = [(0,0,1), (0,10,2), (10,10,1), (15,5,-1)]
 
     random_trajectory = [np.zeros(3)]
+    v = np.random.rand(3)
     for i in range(100):
-        random_trajectory.append(random_trajectory[-1] + np.random.rand(3) * .1)
+        random_trajectory.append(random_trajectory[-1] + v)
+        v += np.random.rand(3) * .1
 
     solid = make_solid_from_trajectory(random_trajectory, RADIUS)
     with open('trajectory.stl', 'w') as fd:
