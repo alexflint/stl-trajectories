@@ -68,7 +68,7 @@ def main():
 
     random_trajectory = [np.zeros(3)]
     v = np.random.randn(3) * .1
-    for i in range(100):
+    for i in range(150):
         random_trajectory.append(random_trajectory[-1] + v)
         v += np.random.randn(3) * .01
 
