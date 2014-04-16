@@ -1,7 +1,7 @@
 import numpy as np
 
 RADIUS = .1
-trajectory = [(0,0,1), (0,10,2), (10,10,1), (15,5,-1)]
+trajectory = [(0,0,1), (0,10,2)]#, (10,10,1), (15,5,-1)]
 
 def axis(i, n):
     x = np.zeros(n)
@@ -9,7 +9,12 @@ def axis(i, n):
     return x
 
 def make_quad(a, b, c, d):
-    return [(a, b, c), (a, d, c)]
+    # write triangles in both clockwise and anti-clockwise direction
+    # so that we see them from both sides
+    return [(a, b, c),
+            (a, c, b),
+            (a, d, c),
+            (a, c, d)]
 
 def make_cube(x):
     return (make_quad(x[0], x[1], x[3], x[2]) +
