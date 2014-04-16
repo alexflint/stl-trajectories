@@ -1,8 +1,5 @@
 import numpy as np
 
-RADIUS = .1
-trajectory = [(0,0,1), (0,10,2), (10,10,1), (15,5,-1)]
-
 def axis(i, n):
     x = np.zeros(n)
     x[i] = 1.
@@ -46,6 +43,12 @@ def make_strut(start, end, radius):
 
     return make_cube(corners)
 
+def make_solid_from_trajectory(trajectory, radius):
+    solid = []
+    for i in range(len(trajectory)-1):
+        solid.extend(make_strut(trajectory[i], trajectory[i+1], radius))
+    return solid
+
 def write_solid(solid, out):
     out.write('solid trajectory\n')
     for facet in solid:
@@ -58,9 +61,15 @@ def write_solid(solid, out):
         out.write('  endfacet\n')
 
 def main():
-    solid = []
-    for i in range(len(trajectory)-1):
-        solid.extend(make_strut(trajectory[i], trajectory[i+1], RADIUS))
+    RADIUS = .1
+
+    simple_trajectory = [(0,0,1), (0,10,2), (10,10,1), (15,5,-1)]
+
+    random_trajectory = [np.zeros(3)]
+    for i in range(100):
+        random_trajectory.append(random_trajectory[-1] + np.random.rand(3) * .1)
+
+    solid = make_solid_from_trajectory(random_trajectory, RADIUS)
     with open('trajectory.stl', 'w') as fd:
         write_solid(solid, fd)
 
