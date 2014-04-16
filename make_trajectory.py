@@ -61,6 +61,7 @@ def write_solid(solid, out):
         out.write('  endfacet\n')
 
 def main():
+    np.random.seed(123)
     RADIUS = .1
 
     simple_trajectory = [(0,0,1), (0,10,2), (10,10,1), (15,5,-1)]
