@@ -1,7 +1,7 @@
 import numpy as np
 
 RADIUS = .1
-trajectory = [(0,0,1), (0,10,2)]#, (10,10,1), (15,5,-1)]
+trajectory = [(0,0,1), (0,10,2), (10,10,1), (15,5,-1)]
 
 def axis(i, n):
     x = np.zeros(n)
